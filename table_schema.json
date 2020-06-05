@@ -1,0 +1,225 @@
+{
+    "fields": [
+        {
+            "name": "time",
+            "type": "INT64",
+            "mode": "REQUIRED"
+        },
+        {
+            "name": "info",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+                {
+                    "name": "unique_id",
+                    "type": "STRING",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "collection_id",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "instance_index",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "priority",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "scheduling_class",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "machine_id",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "alloc_collection_id",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "alloc_instance_index",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "collection_type",
+                    "type": "INT64",
+                    "mode": "NULLABLE"
+                }
+            ]
+        },
+        {
+            "name": "metrics",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+                {
+                    "name": "avg_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "avg_memory_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "max_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "max_memory_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "random_sample_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "assigned_memory",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "sample_rate",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p0_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p10_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p20_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p30_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p40_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p50_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p60_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p70_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p80_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p90_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p91_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p92_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p93_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p94_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p95_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p96_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p97_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p98_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "p99_cpu_usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "memory_limit",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "cpu_limit",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                }
+            ]
+        },
+        {
+            "name": "abstract_metrics",
+            "type": "RECORD",
+            "mode": "NULLABLE",
+            "fields": [
+                {
+                    "name": "usage",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                },
+                {
+                    "name": "limit",
+                    "type": "FLOAT64",
+                    "mode": "NULLABLE"
+                }
+            ]
+        }
+    ]
+}

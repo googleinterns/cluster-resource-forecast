@@ -1,0 +1,124 @@
+syntax = "proto2";
+
+message Int64Range {
+  optional int64 lower_bound = 1;
+  optional int64 upper_bound = 2;
+}
+
+message DataLocation {
+  optional string dataset = 1;
+  optional string table = 2;
+}
+
+message VMFilter {
+  optional int64 start_time = 1;
+  optional int64 end_time = 2;
+  optional bool remove_non_top_level_vms = 3;
+  optional Int64Range priority_range = 4;
+  optional Int64Range scheduling_class_range = 5;
+  repeated int64 machine_id = 6;
+}
+
+message LoadOrWrite {
+  oneof load_or_write {
+    DataLocation input = 1;
+    DataLocation output = 2;
+  }
+}
+
+message AbstractMetricSelector {
+  oneof metric {
+    bool max_memory_usage = 1;
+    int64 cpu_usage_percentile = 2;
+    bool avg_cpu_usage = 3;
+    bool avg_memory_usage = 4;
+    bool max_cpu_usage = 5;
+  }
+}
+
+message ResetAndShift {
+  optional bool reset_time_to_zero = 1;
+  optional Int64Range random_shift = 2;
+  optional int64 seed = 3;
+}
+
+message Scheduler {
+  message AtRandom {
+    optional int64 num_machines = 1;
+    optional int64 seed = 2;
+  }
+  oneof scheduler {
+    AtRandom at_random = 1;
+    bool by_machine_id = 2;
+    bool by_vm_unique_id = 3;
+  }
+}
+
+message PredictorConfig {
+  repeated PredictorConfig decorated_predictors = 10;
+  message AvgPredictorConfig {
+    optional int64 min_num_samples = 1;
+    optional bool cap_to_limit = 2;
+    optional double percentile = 3;
+  }
+  message MaxPredictorConfig {
+    optional int64 min_num_samples = 1;
+    optional bool cap_to_limit = 2;
+    optional double percentile = 3;
+  }
+  message PerVMPercentileConfig {
+    optional int64 min_num_samples = 1;
+    optional bool cap_to_limit = 2;
+    optional double percentile = 3;
+    optional int64 num_history_samples = 4;
+  }
+  message NSigmaConfig {
+    optional int64 min_num_samples = 1;
+    optional bool cap_to_limit = 2;
+    optional double percentile = 3;
+    optional int64 num_history_samples = 4;
+    optional int64 n = 5;
+  }
+  message AvgDecoratorConfig {
+  }
+  message MaxDecoratorConfig {
+  }
+  // New predictor needs to define a new message here.
+  oneof predictor {
+    AvgPredictorConfig avg_predictor = 1;
+    MaxPredictorConfig max_predictor = 2;
+    AvgDecoratorConfig avg_decorator = 3;
+    MaxDecoratorConfig max_decorator = 4;
+    PerVMPercentileConfig per_vm_percentile_predictor = 5;
+    NSigmaConfig n_sigma_predictor = 6;
+  }
+}
+
+message FortuneTellerConfig {
+  optional string name = 1;
+  optional bool save_samples = 2;
+  message OracleConfig {
+    optional int64 horizon_in_seconds = 1;
+    optional bool cap_to_limit = 2;
+    optional int64 percentile = 3 [default = 100];
+  }
+  oneof teller {
+    OracleConfig oracle = 3;
+    PredictorConfig predictor = 4;
+  }
+}
+
+message SimulationConfig {
+  optional DataLocation input = 1;
+  optional VMFilter filter = 2;
+  optional LoadOrWrite filtered_samples = 3;
+  optional LoadOrWrite time_aligned_samples = 4;
+  optional AbstractMetricSelector metric = 5;
+  optional LoadOrWrite samples_with_abstract_metrics = 6;
+  optional ResetAndShift reset_and_shift = 7;
+  optional LoadOrWrite samples_with_reset_and_shift = 8;
+  optional Scheduler scheduler = 9;
+  optional LoadOrWrite scheduled_samples = 10;
+  repeated FortuneTellerConfig fortune_teller = 11;
+  optional DataLocation simulation_result = 12;
+}
