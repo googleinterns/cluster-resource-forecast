@@ -19,32 +19,25 @@ class _State:
 
 
 class MaxPredictor(StatefulPredictor):
-    def __init__(self, config, decorated_predictors=None):
-        super().__init__(config, decorated_predictors)
-        self.decorated_predictors = decorated_predictors
+    def __init__(self, config):
+        super().__init__(config)
         self.cap_to_limit = config.cap_to_limit
 
     def CreateState(self, vm_info):
         return _State()
 
     def UpdateState(self, vm_measure, vm_state):
-        vm_state.usage = max(
-            vm_measure["sample"]["abstract_metrics"]["usage"], vm_state.usage
-        )
+        limit = vm_measure["sample"]["abstract_metrics"]["limit"]
+        usage = vm_measure["sample"]["abstract_metrics"]["usage"]
+        if self.cap_to_limit == True:
+            usage = min(usage, limit)
+        vm_state.usage = max(usage, vm_state.usage)
 
     def Predict(self, vm_states_and_num_samples):
 
         vms_peaks = []
         for vm_state_and_num_sample in vm_states_and_num_samples:
-<<<<<<< HEAD
-<<<<<<< HEAD
             vms_peaks.append(vm_state_and_num_sample.vm_state.usage)
-=======
-            vms_avgs.append(vm_state_and_num_sample.vm_state.usage)
->>>>>>> 833bafe... fortune-teller
-=======
-            vms_peaks.append(vm_state_and_num_sample.vm_state.usage)
->>>>>>> 8cfc3fd... update
 
         predicted_peak = sum(vms_peaks)
 

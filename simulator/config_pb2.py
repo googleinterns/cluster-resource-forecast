@@ -11,1181 +11,2228 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-
-
 DESCRIPTOR = _descriptor.FileDescriptor(
-  name='simulator/config.proto',
-  package='',
-  syntax='proto2',
-  serialized_options=None,
-  create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x16simulator/config.proto\"6\n\nInt64Range\x12\x13\n\x0blower_bound\x18\x01 \x01(\x03\x12\x13\n\x0bupper_bound\x18\x02 \x01(\x03\".\n\x0c\x44\x61taLocation\x12\x0f\n\x07\x64\x61taset\x18\x01 \x01(\t\x12\r\n\x05table\x18\x02 \x01(\t\"\xb8\x01\n\x08VMFilter\x12\x12\n\nstart_time\x18\x01 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x02 \x01(\x03\x12 \n\x18remove_non_top_level_vms\x18\x03 \x01(\x08\x12#\n\x0epriority_range\x18\x04 \x01(\x0b\x32\x0b.Int64Range\x12+\n\x16scheduling_class_range\x18\x05 \x01(\x0b\x32\x0b.Int64Range\x12\x12\n\nmachine_id\x18\x06 \x03(\x03\"_\n\x0bLoadOrWrite\x12\x1e\n\x05input\x18\x01 \x01(\x0b\x32\r.DataLocationH\x00\x12\x1f\n\x06output\x18\x02 \x01(\x0b\x32\r.DataLocationH\x00\x42\x0f\n\rload_or_write\"\xac\x01\n\x16\x41\x62stractMetricSelector\x12\x1a\n\x10max_memory_usage\x18\x01 \x01(\x08H\x00\x12\x1e\n\x14\x63pu_usage_percentile\x18\x02 \x01(\x03H\x00\x12\x17\n\ravg_cpu_usage\x18\x03 \x01(\x08H\x00\x12\x1a\n\x10\x61vg_memory_usage\x18\x04 \x01(\x08H\x00\x12\x17\n\rmax_cpu_usage\x18\x05 \x01(\x08H\x00\x42\x08\n\x06metric\"\\\n\rResetAndShift\x12\x1a\n\x12reset_time_to_zero\x18\x01 \x01(\x08\x12!\n\x0crandom_shift\x18\x02 \x01(\x0b\x32\x0b.Int64Range\x12\x0c\n\x04seed\x18\x03 \x01(\x03\"\xa6\x01\n\tScheduler\x12(\n\tat_random\x18\x01 \x01(\x0b\x32\x13.Scheduler.AtRandomH\x00\x12\x17\n\rby_machine_id\x18\x02 \x01(\x08H\x00\x12\x19\n\x0f\x62y_vm_unique_id\x18\x03 \x01(\x08H\x00\x1a.\n\x08\x41tRandom\x12\x14\n\x0cnum_machines\x18\x01 \x01(\x03\x12\x0c\n\x04seed\x18\x02 \x01(\x03\x42\x0b\n\tscheduler\"\xa3\x07\n\x0fPredictorConfig\x12.\n\x14\x64\x65\x63orated_predictors\x18\n \x03(\x0b\x32\x10.PredictorConfig\x12<\n\ravg_predictor\x18\x01 \x01(\x0b\x32#.PredictorConfig.AvgPredictorConfigH\x00\x12<\n\rmax_predictor\x18\x02 \x01(\x0b\x32#.PredictorConfig.MaxPredictorConfigH\x00\x12<\n\ravg_decorator\x18\x03 \x01(\x0b\x32#.PredictorConfig.AvgDecoratorConfigH\x00\x12<\n\rmax_decorator\x18\x04 \x01(\x0b\x32#.PredictorConfig.MaxDecoratorConfigH\x00\x12M\n\x1bper_vm_percentile_predictor\x18\x05 \x01(\x0b\x32&.PredictorConfig.PerVMPercentileConfigH\x00\x12:\n\x11n_sigma_predictor\x18\x06 \x01(\x0b\x32\x1d.PredictorConfig.NSigmaConfigH\x00\x1aW\n\x12\x41vgPredictorConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x12\n\npercentile\x18\x03 \x01(\x01\x1aW\n\x12MaxPredictorConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x12\n\npercentile\x18\x03 \x01(\x01\x1aw\n\x15PerVMPercentileConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x12\n\npercentile\x18\x03 \x01(\x01\x12\x1b\n\x13num_history_samples\x18\x04 \x01(\x03\x1ay\n\x0cNSigmaConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x12\n\npercentile\x18\x03 \x01(\x01\x12\x1b\n\x13num_history_samples\x18\x04 \x01(\x03\x12\t\n\x01n\x18\x05 \x01(\x03\x1a\x14\n\x12\x41vgDecoratorConfig\x1a\x14\n\x12MaxDecoratorConfigB\x0b\n\tpredictor\"\xfa\x01\n\x13\x46ortuneTellerConfig\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0csave_samples\x18\x02 \x01(\x08\x12\x33\n\x06oracle\x18\x03 \x01(\x0b\x32!.FortuneTellerConfig.OracleConfigH\x00\x12%\n\tpredictor\x18\x04 \x01(\x0b\x32\x10.PredictorConfigH\x00\x1aY\n\x0cOracleConfig\x12\x1a\n\x12horizon_in_seconds\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x17\n\npercentile\x18\x03 \x01(\x03:\x03\x31\x30\x30\x42\x08\n\x06teller\"\xfa\x03\n\x10SimulationConfig\x12\x1c\n\x05input\x18\x01 \x01(\x0b\x32\r.DataLocation\x12\x19\n\x06\x66ilter\x18\x02 \x01(\x0b\x32\t.VMFilter\x12&\n\x10\x66iltered_samples\x18\x03 \x01(\x0b\x32\x0c.LoadOrWrite\x12*\n\x14time_aligned_samples\x18\x04 \x01(\x0b\x32\x0c.LoadOrWrite\x12\'\n\x06metric\x18\x05 \x01(\x0b\x32\x17.AbstractMetricSelector\x12\x33\n\x1dsamples_with_abstract_metrics\x18\x06 \x01(\x0b\x32\x0c.LoadOrWrite\x12\'\n\x0freset_and_shift\x18\x07 \x01(\x0b\x32\x0e.ResetAndShift\x12\x32\n\x1csamples_with_reset_and_shift\x18\x08 \x01(\x0b\x32\x0c.LoadOrWrite\x12\x1d\n\tscheduler\x18\t \x01(\x0b\x32\n.Scheduler\x12\'\n\x11scheduled_samples\x18\n \x01(\x0b\x32\x0c.LoadOrWrite\x12,\n\x0e\x66ortune_teller\x18\x0b \x03(\x0b\x32\x14.FortuneTellerConfig\x12(\n\x11simulation_result\x18\x0c \x01(\x0b\x32\r.DataLocation'
+    name="simulator/config.proto",
+    package="",
+    syntax="proto2",
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+    serialized_pb=b'\n\x16simulator/config.proto"6\n\nInt64Range\x12\x13\n\x0blower_bound\x18\x01 \x01(\x03\x12\x13\n\x0bupper_bound\x18\x02 \x01(\x03".\n\x0c\x44\x61taLocation\x12\x0f\n\x07\x64\x61taset\x18\x01 \x01(\t\x12\r\n\x05table\x18\x02 \x01(\t"\xb8\x01\n\x08VMFilter\x12\x12\n\nstart_time\x18\x01 \x01(\x03\x12\x10\n\x08\x65nd_time\x18\x02 \x01(\x03\x12 \n\x18remove_non_top_level_vms\x18\x03 \x01(\x08\x12#\n\x0epriority_range\x18\x04 \x01(\x0b\x32\x0b.Int64Range\x12+\n\x16scheduling_class_range\x18\x05 \x01(\x0b\x32\x0b.Int64Range\x12\x12\n\nmachine_id\x18\x06 \x03(\x03"_\n\x0bLoadOrWrite\x12\x1e\n\x05input\x18\x01 \x01(\x0b\x32\r.DataLocationH\x00\x12\x1f\n\x06output\x18\x02 \x01(\x0b\x32\r.DataLocationH\x00\x42\x0f\n\rload_or_write"\xac\x01\n\x16\x41\x62stractMetricSelector\x12\x1a\n\x10max_memory_usage\x18\x01 \x01(\x08H\x00\x12\x1e\n\x14\x63pu_usage_percentile\x18\x02 \x01(\x03H\x00\x12\x17\n\ravg_cpu_usage\x18\x03 \x01(\x08H\x00\x12\x1a\n\x10\x61vg_memory_usage\x18\x04 \x01(\x08H\x00\x12\x17\n\rmax_cpu_usage\x18\x05 \x01(\x08H\x00\x42\x08\n\x06metric"\\\n\rResetAndShift\x12\x1a\n\x12reset_time_to_zero\x18\x01 \x01(\x08\x12!\n\x0crandom_shift\x18\x02 \x01(\x0b\x32\x0b.Int64Range\x12\x0c\n\x04seed\x18\x03 \x01(\x03"\xa6\x01\n\tScheduler\x12(\n\tat_random\x18\x01 \x01(\x0b\x32\x13.Scheduler.AtRandomH\x00\x12\x17\n\rby_machine_id\x18\x02 \x01(\x08H\x00\x12\x19\n\x0f\x62y_vm_unique_id\x18\x03 \x01(\x08H\x00\x1a.\n\x08\x41tRandom\x12\x14\n\x0cnum_machines\x18\x01 \x01(\x03\x12\x0c\n\x04seed\x18\x02 \x01(\x03\x42\x0b\n\tscheduler"\xbc\t\n\x0fPredictorConfig\x12.\n\x14\x64\x65\x63orated_predictors\x18\n \x03(\x0b\x32\x10.PredictorConfig\x12<\n\ravg_predictor\x18\x01 \x01(\x0b\x32#.PredictorConfig.AvgPredictorConfigH\x00\x12<\n\rmax_predictor\x18\x02 \x01(\x0b\x32#.PredictorConfig.MaxPredictorConfigH\x00\x12<\n\ravg_decorator\x18\x03 \x01(\x0b\x32#.PredictorConfig.AvgDecoratorConfigH\x00\x12<\n\rmax_decorator\x18\x04 \x01(\x0b\x32#.PredictorConfig.MaxDecoratorConfigH\x00\x12M\n\x1bper_vm_percentile_predictor\x18\x05 \x01(\x0b\x32&.PredictorConfig.PerVMPercentileConfigH\x00\x12:\n\x11n_sigma_predictor\x18\x06 \x01(\x0b\x32\x1d.PredictorConfig.NSigmaConfigH\x00\x12@\n\x0flimit_predictor\x18\x07 \x01(\x0b\x32%.PredictorConfig.LimitPredictorConfigH\x00\x12W\n per_machine_percentile_predictor\x18\x08 \x01(\x0b\x32+.PredictorConfig.PerMachinePercentileConfigH\x00\x1a\x43\n\x12\x41vgPredictorConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x1a/\n\x14LimitPredictorConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x1a\x43\n\x12MaxPredictorConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x1a|\n\x15PerVMPercentileConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x17\n\npercentile\x18\x03 \x01(\x01:\x03\x31\x30\x30\x12\x1b\n\x13num_history_samples\x18\x04 \x01(\x03\x1a\x81\x01\n\x1aPerMachinePercentileConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x17\n\npercentile\x18\x03 \x01(\x01:\x03\x31\x30\x30\x12\x1b\n\x13num_history_samples\x18\x04 \x01(\x03\x1a\x65\n\x0cNSigmaConfig\x12\x17\n\x0fmin_num_samples\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x1b\n\x13num_history_samples\x18\x03 \x01(\x03\x12\t\n\x01n\x18\x04 \x01(\x03\x1a\x14\n\x12\x41vgDecoratorConfig\x1a\x14\n\x12MaxDecoratorConfigB\x0b\n\tpredictor"\xfa\x01\n\x13\x46ortuneTellerConfig\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x14\n\x0csave_samples\x18\x02 \x01(\x08\x12\x33\n\x06oracle\x18\x03 \x01(\x0b\x32!.FortuneTellerConfig.OracleConfigH\x00\x12%\n\tpredictor\x18\x04 \x01(\x0b\x32\x10.PredictorConfigH\x00\x1aY\n\x0cOracleConfig\x12\x1a\n\x12horizon_in_seconds\x18\x01 \x01(\x03\x12\x14\n\x0c\x63\x61p_to_limit\x18\x02 \x01(\x08\x12\x17\n\npercentile\x18\x03 \x01(\x03:\x03\x31\x30\x30\x42\x08\n\x06teller"\xfa\x03\n\x10SimulationConfig\x12\x1c\n\x05input\x18\x01 \x01(\x0b\x32\r.DataLocation\x12\x19\n\x06\x66ilter\x18\x02 \x01(\x0b\x32\t.VMFilter\x12&\n\x10\x66iltered_samples\x18\x03 \x01(\x0b\x32\x0c.LoadOrWrite\x12*\n\x14time_aligned_samples\x18\x04 \x01(\x0b\x32\x0c.LoadOrWrite\x12\'\n\x06metric\x18\x05 \x01(\x0b\x32\x17.AbstractMetricSelector\x12\x33\n\x1dsamples_with_abstract_metrics\x18\x06 \x01(\x0b\x32\x0c.LoadOrWrite\x12\'\n\x0freset_and_shift\x18\x07 \x01(\x0b\x32\x0e.ResetAndShift\x12\x32\n\x1csamples_with_reset_and_shift\x18\x08 \x01(\x0b\x32\x0c.LoadOrWrite\x12\x1d\n\tscheduler\x18\t \x01(\x0b\x32\n.Scheduler\x12\'\n\x11scheduled_samples\x18\n \x01(\x0b\x32\x0c.LoadOrWrite\x12,\n\x0e\x66ortune_teller\x18\x0b \x03(\x0b\x32\x14.FortuneTellerConfig\x12(\n\x11simulation_result\x18\x0c \x01(\x0b\x32\r.DataLocation',
 )
 
 
-
-
 _INT64RANGE = _descriptor.Descriptor(
-  name='Int64Range',
-  full_name='Int64Range',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='lower_bound', full_name='Int64Range.lower_bound', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='upper_bound', full_name='Int64Range.upper_bound', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=26,
-  serialized_end=80,
+    name="Int64Range",
+    full_name="Int64Range",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="lower_bound",
+            full_name="Int64Range.lower_bound",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="upper_bound",
+            full_name="Int64Range.upper_bound",
+            index=1,
+            number=2,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=26,
+    serialized_end=80,
 )
 
 
 _DATALOCATION = _descriptor.Descriptor(
-  name='DataLocation',
-  full_name='DataLocation',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='dataset', full_name='DataLocation.dataset', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='table', full_name='DataLocation.table', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=82,
-  serialized_end=128,
+    name="DataLocation",
+    full_name="DataLocation",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="dataset",
+            full_name="DataLocation.dataset",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="table",
+            full_name="DataLocation.table",
+            index=1,
+            number=2,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=82,
+    serialized_end=128,
 )
 
 
 _VMFILTER = _descriptor.Descriptor(
-  name='VMFilter',
-  full_name='VMFilter',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='start_time', full_name='VMFilter.start_time', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='end_time', full_name='VMFilter.end_time', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='remove_non_top_level_vms', full_name='VMFilter.remove_non_top_level_vms', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='priority_range', full_name='VMFilter.priority_range', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scheduling_class_range', full_name='VMFilter.scheduling_class_range', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='machine_id', full_name='VMFilter.machine_id', index=5,
-      number=6, type=3, cpp_type=2, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=131,
-  serialized_end=315,
+    name="VMFilter",
+    full_name="VMFilter",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="start_time",
+            full_name="VMFilter.start_time",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="end_time",
+            full_name="VMFilter.end_time",
+            index=1,
+            number=2,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="remove_non_top_level_vms",
+            full_name="VMFilter.remove_non_top_level_vms",
+            index=2,
+            number=3,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="priority_range",
+            full_name="VMFilter.priority_range",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="scheduling_class_range",
+            full_name="VMFilter.scheduling_class_range",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="machine_id",
+            full_name="VMFilter.machine_id",
+            index=5,
+            number=6,
+            type=3,
+            cpp_type=2,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=131,
+    serialized_end=315,
 )
 
 
 _LOADORWRITE = _descriptor.Descriptor(
-  name='LoadOrWrite',
-  full_name='LoadOrWrite',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='input', full_name='LoadOrWrite.input', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='output', full_name='LoadOrWrite.output', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='load_or_write', full_name='LoadOrWrite.load_or_write',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=317,
-  serialized_end=412,
+    name="LoadOrWrite",
+    full_name="LoadOrWrite",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="input",
+            full_name="LoadOrWrite.input",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="output",
+            full_name="LoadOrWrite.output",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="load_or_write",
+            full_name="LoadOrWrite.load_or_write",
+            index=0,
+            containing_type=None,
+            create_key=_descriptor._internal_create_key,
+            fields=[],
+        ),
+    ],
+    serialized_start=317,
+    serialized_end=412,
 )
 
 
 _ABSTRACTMETRICSELECTOR = _descriptor.Descriptor(
-  name='AbstractMetricSelector',
-  full_name='AbstractMetricSelector',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='max_memory_usage', full_name='AbstractMetricSelector.max_memory_usage', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cpu_usage_percentile', full_name='AbstractMetricSelector.cpu_usage_percentile', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avg_cpu_usage', full_name='AbstractMetricSelector.avg_cpu_usage', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avg_memory_usage', full_name='AbstractMetricSelector.avg_memory_usage', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='max_cpu_usage', full_name='AbstractMetricSelector.max_cpu_usage', index=4,
-      number=5, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='metric', full_name='AbstractMetricSelector.metric',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=415,
-  serialized_end=587,
+    name="AbstractMetricSelector",
+    full_name="AbstractMetricSelector",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="max_memory_usage",
+            full_name="AbstractMetricSelector.max_memory_usage",
+            index=0,
+            number=1,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cpu_usage_percentile",
+            full_name="AbstractMetricSelector.cpu_usage_percentile",
+            index=1,
+            number=2,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="avg_cpu_usage",
+            full_name="AbstractMetricSelector.avg_cpu_usage",
+            index=2,
+            number=3,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="avg_memory_usage",
+            full_name="AbstractMetricSelector.avg_memory_usage",
+            index=3,
+            number=4,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="max_cpu_usage",
+            full_name="AbstractMetricSelector.max_cpu_usage",
+            index=4,
+            number=5,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="metric",
+            full_name="AbstractMetricSelector.metric",
+            index=0,
+            containing_type=None,
+            create_key=_descriptor._internal_create_key,
+            fields=[],
+        ),
+    ],
+    serialized_start=415,
+    serialized_end=587,
 )
 
 
 _RESETANDSHIFT = _descriptor.Descriptor(
-  name='ResetAndShift',
-  full_name='ResetAndShift',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='reset_time_to_zero', full_name='ResetAndShift.reset_time_to_zero', index=0,
-      number=1, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='random_shift', full_name='ResetAndShift.random_shift', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='seed', full_name='ResetAndShift.seed', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=589,
-  serialized_end=681,
+    name="ResetAndShift",
+    full_name="ResetAndShift",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="reset_time_to_zero",
+            full_name="ResetAndShift.reset_time_to_zero",
+            index=0,
+            number=1,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="random_shift",
+            full_name="ResetAndShift.random_shift",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="seed",
+            full_name="ResetAndShift.seed",
+            index=2,
+            number=3,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=589,
+    serialized_end=681,
 )
 
 
 _SCHEDULER_ATRANDOM = _descriptor.Descriptor(
-  name='AtRandom',
-  full_name='Scheduler.AtRandom',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='num_machines', full_name='Scheduler.AtRandom.num_machines', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='seed', full_name='Scheduler.AtRandom.seed', index=1,
-      number=2, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=791,
-  serialized_end=837,
+    name="AtRandom",
+    full_name="Scheduler.AtRandom",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="num_machines",
+            full_name="Scheduler.AtRandom.num_machines",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="seed",
+            full_name="Scheduler.AtRandom.seed",
+            index=1,
+            number=2,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=791,
+    serialized_end=837,
 )
 
 _SCHEDULER = _descriptor.Descriptor(
-  name='Scheduler',
-  full_name='Scheduler',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='at_random', full_name='Scheduler.at_random', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='by_machine_id', full_name='Scheduler.by_machine_id', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='by_vm_unique_id', full_name='Scheduler.by_vm_unique_id', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[_SCHEDULER_ATRANDOM, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='scheduler', full_name='Scheduler.scheduler',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=684,
-  serialized_end=850,
+    name="Scheduler",
+    full_name="Scheduler",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="at_random",
+            full_name="Scheduler.at_random",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="by_machine_id",
+            full_name="Scheduler.by_machine_id",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="by_vm_unique_id",
+            full_name="Scheduler.by_vm_unique_id",
+            index=2,
+            number=3,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[_SCHEDULER_ATRANDOM,],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="scheduler",
+            full_name="Scheduler.scheduler",
+            index=0,
+            containing_type=None,
+            create_key=_descriptor._internal_create_key,
+            fields=[],
+        ),
+    ],
+    serialized_start=684,
+    serialized_end=850,
 )
 
 
 _PREDICTORCONFIG_AVGPREDICTORCONFIG = _descriptor.Descriptor(
-  name='AvgPredictorConfig',
-  full_name='PredictorConfig.AvgPredictorConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min_num_samples', full_name='PredictorConfig.AvgPredictorConfig.min_num_samples', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cap_to_limit', full_name='PredictorConfig.AvgPredictorConfig.cap_to_limit', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='percentile', full_name='PredictorConfig.AvgPredictorConfig.percentile', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1307,
-  serialized_end=1394,
+    name="AvgPredictorConfig",
+    full_name="PredictorConfig.AvgPredictorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.AvgPredictorConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="PredictorConfig.AvgPredictorConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1462,
+    serialized_end=1529,
+)
+
+_PREDICTORCONFIG_LIMITPREDICTORCONFIG = _descriptor.Descriptor(
+    name="LimitPredictorConfig",
+    full_name="PredictorConfig.LimitPredictorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.LimitPredictorConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1531,
+    serialized_end=1578,
 )
 
 _PREDICTORCONFIG_MAXPREDICTORCONFIG = _descriptor.Descriptor(
-  name='MaxPredictorConfig',
-  full_name='PredictorConfig.MaxPredictorConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min_num_samples', full_name='PredictorConfig.MaxPredictorConfig.min_num_samples', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cap_to_limit', full_name='PredictorConfig.MaxPredictorConfig.cap_to_limit', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='percentile', full_name='PredictorConfig.MaxPredictorConfig.percentile', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1396,
-  serialized_end=1483,
+    name="MaxPredictorConfig",
+    full_name="PredictorConfig.MaxPredictorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.MaxPredictorConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="PredictorConfig.MaxPredictorConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1580,
+    serialized_end=1647,
 )
 
 _PREDICTORCONFIG_PERVMPERCENTILECONFIG = _descriptor.Descriptor(
-  name='PerVMPercentileConfig',
-  full_name='PredictorConfig.PerVMPercentileConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min_num_samples', full_name='PredictorConfig.PerVMPercentileConfig.min_num_samples', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cap_to_limit', full_name='PredictorConfig.PerVMPercentileConfig.cap_to_limit', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='percentile', full_name='PredictorConfig.PerVMPercentileConfig.percentile', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='num_history_samples', full_name='PredictorConfig.PerVMPercentileConfig.num_history_samples', index=3,
-      number=4, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1485,
-  serialized_end=1604,
+    name="PerVMPercentileConfig",
+    full_name="PredictorConfig.PerVMPercentileConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.PerVMPercentileConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="PredictorConfig.PerVMPercentileConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="percentile",
+            full_name="PredictorConfig.PerVMPercentileConfig.percentile",
+            index=2,
+            number=3,
+            type=1,
+            cpp_type=5,
+            label=1,
+            has_default_value=True,
+            default_value=float(100),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="num_history_samples",
+            full_name="PredictorConfig.PerVMPercentileConfig.num_history_samples",
+            index=3,
+            number=4,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1649,
+    serialized_end=1773,
+)
+
+_PREDICTORCONFIG_PERMACHINEPERCENTILECONFIG = _descriptor.Descriptor(
+    name="PerMachinePercentileConfig",
+    full_name="PredictorConfig.PerMachinePercentileConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.PerMachinePercentileConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="PredictorConfig.PerMachinePercentileConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="percentile",
+            full_name="PredictorConfig.PerMachinePercentileConfig.percentile",
+            index=2,
+            number=3,
+            type=1,
+            cpp_type=5,
+            label=1,
+            has_default_value=True,
+            default_value=float(100),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="num_history_samples",
+            full_name="PredictorConfig.PerMachinePercentileConfig.num_history_samples",
+            index=3,
+            number=4,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1776,
+    serialized_end=1905,
 )
 
 _PREDICTORCONFIG_NSIGMACONFIG = _descriptor.Descriptor(
-  name='NSigmaConfig',
-  full_name='PredictorConfig.NSigmaConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min_num_samples', full_name='PredictorConfig.NSigmaConfig.min_num_samples', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cap_to_limit', full_name='PredictorConfig.NSigmaConfig.cap_to_limit', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='percentile', full_name='PredictorConfig.NSigmaConfig.percentile', index=2,
-      number=3, type=1, cpp_type=5, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='num_history_samples', full_name='PredictorConfig.NSigmaConfig.num_history_samples', index=3,
-      number=4, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='n', full_name='PredictorConfig.NSigmaConfig.n', index=4,
-      number=5, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1606,
-  serialized_end=1727,
+    name="NSigmaConfig",
+    full_name="PredictorConfig.NSigmaConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="min_num_samples",
+            full_name="PredictorConfig.NSigmaConfig.min_num_samples",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="PredictorConfig.NSigmaConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="num_history_samples",
+            full_name="PredictorConfig.NSigmaConfig.num_history_samples",
+            index=2,
+            number=3,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="n",
+            full_name="PredictorConfig.NSigmaConfig.n",
+            index=3,
+            number=4,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=1907,
+    serialized_end=2008,
 )
 
 _PREDICTORCONFIG_AVGDECORATORCONFIG = _descriptor.Descriptor(
-  name='AvgDecoratorConfig',
-  full_name='PredictorConfig.AvgDecoratorConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1729,
-  serialized_end=1749,
+    name="AvgDecoratorConfig",
+    full_name="PredictorConfig.AvgDecoratorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2010,
+    serialized_end=2030,
 )
 
 _PREDICTORCONFIG_MAXDECORATORCONFIG = _descriptor.Descriptor(
-  name='MaxDecoratorConfig',
-  full_name='PredictorConfig.MaxDecoratorConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1751,
-  serialized_end=1771,
+    name="MaxDecoratorConfig",
+    full_name="PredictorConfig.MaxDecoratorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2032,
+    serialized_end=2052,
 )
 
 _PREDICTORCONFIG = _descriptor.Descriptor(
-  name='PredictorConfig',
-  full_name='PredictorConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='decorated_predictors', full_name='PredictorConfig.decorated_predictors', index=0,
-      number=10, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avg_predictor', full_name='PredictorConfig.avg_predictor', index=1,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='max_predictor', full_name='PredictorConfig.max_predictor', index=2,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='avg_decorator', full_name='PredictorConfig.avg_decorator', index=3,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='max_decorator', full_name='PredictorConfig.max_decorator', index=4,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='per_vm_percentile_predictor', full_name='PredictorConfig.per_vm_percentile_predictor', index=5,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='n_sigma_predictor', full_name='PredictorConfig.n_sigma_predictor', index=6,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[_PREDICTORCONFIG_AVGPREDICTORCONFIG, _PREDICTORCONFIG_MAXPREDICTORCONFIG, _PREDICTORCONFIG_PERVMPERCENTILECONFIG, _PREDICTORCONFIG_NSIGMACONFIG, _PREDICTORCONFIG_AVGDECORATORCONFIG, _PREDICTORCONFIG_MAXDECORATORCONFIG, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='predictor', full_name='PredictorConfig.predictor',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=853,
-  serialized_end=1784,
+    name="PredictorConfig",
+    full_name="PredictorConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="decorated_predictors",
+            full_name="PredictorConfig.decorated_predictors",
+            index=0,
+            number=10,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="avg_predictor",
+            full_name="PredictorConfig.avg_predictor",
+            index=1,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="max_predictor",
+            full_name="PredictorConfig.max_predictor",
+            index=2,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="avg_decorator",
+            full_name="PredictorConfig.avg_decorator",
+            index=3,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="max_decorator",
+            full_name="PredictorConfig.max_decorator",
+            index=4,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="per_vm_percentile_predictor",
+            full_name="PredictorConfig.per_vm_percentile_predictor",
+            index=5,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="n_sigma_predictor",
+            full_name="PredictorConfig.n_sigma_predictor",
+            index=6,
+            number=6,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="limit_predictor",
+            full_name="PredictorConfig.limit_predictor",
+            index=7,
+            number=7,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="per_machine_percentile_predictor",
+            full_name="PredictorConfig.per_machine_percentile_predictor",
+            index=8,
+            number=8,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[
+        _PREDICTORCONFIG_AVGPREDICTORCONFIG,
+        _PREDICTORCONFIG_LIMITPREDICTORCONFIG,
+        _PREDICTORCONFIG_MAXPREDICTORCONFIG,
+        _PREDICTORCONFIG_PERVMPERCENTILECONFIG,
+        _PREDICTORCONFIG_PERMACHINEPERCENTILECONFIG,
+        _PREDICTORCONFIG_NSIGMACONFIG,
+        _PREDICTORCONFIG_AVGDECORATORCONFIG,
+        _PREDICTORCONFIG_MAXDECORATORCONFIG,
+    ],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="predictor",
+            full_name="PredictorConfig.predictor",
+            index=0,
+            containing_type=None,
+            create_key=_descriptor._internal_create_key,
+            fields=[],
+        ),
+    ],
+    serialized_start=853,
+    serialized_end=2065,
 )
 
 
 _FORTUNETELLERCONFIG_ORACLECONFIG = _descriptor.Descriptor(
-  name='OracleConfig',
-  full_name='FortuneTellerConfig.OracleConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='horizon_in_seconds', full_name='FortuneTellerConfig.OracleConfig.horizon_in_seconds', index=0,
-      number=1, type=3, cpp_type=2, label=1,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='cap_to_limit', full_name='FortuneTellerConfig.OracleConfig.cap_to_limit', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='percentile', full_name='FortuneTellerConfig.OracleConfig.percentile', index=2,
-      number=3, type=3, cpp_type=2, label=1,
-      has_default_value=True, default_value=100,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1938,
-  serialized_end=2027,
+    name="OracleConfig",
+    full_name="FortuneTellerConfig.OracleConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="horizon_in_seconds",
+            full_name="FortuneTellerConfig.OracleConfig.horizon_in_seconds",
+            index=0,
+            number=1,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=False,
+            default_value=0,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="cap_to_limit",
+            full_name="FortuneTellerConfig.OracleConfig.cap_to_limit",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="percentile",
+            full_name="FortuneTellerConfig.OracleConfig.percentile",
+            index=2,
+            number=3,
+            type=3,
+            cpp_type=2,
+            label=1,
+            has_default_value=True,
+            default_value=100,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2219,
+    serialized_end=2308,
 )
 
 _FORTUNETELLERCONFIG = _descriptor.Descriptor(
-  name='FortuneTellerConfig',
-  full_name='FortuneTellerConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='FortuneTellerConfig.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='save_samples', full_name='FortuneTellerConfig.save_samples', index=1,
-      number=2, type=8, cpp_type=7, label=1,
-      has_default_value=False, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='oracle', full_name='FortuneTellerConfig.oracle', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='predictor', full_name='FortuneTellerConfig.predictor', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[_FORTUNETELLERCONFIG_ORACLECONFIG, ],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-    _descriptor.OneofDescriptor(
-      name='teller', full_name='FortuneTellerConfig.teller',
-      index=0, containing_type=None,
-      create_key=_descriptor._internal_create_key,
-    fields=[]),
-  ],
-  serialized_start=1787,
-  serialized_end=2037,
+    name="FortuneTellerConfig",
+    full_name="FortuneTellerConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="name",
+            full_name="FortuneTellerConfig.name",
+            index=0,
+            number=1,
+            type=9,
+            cpp_type=9,
+            label=1,
+            has_default_value=False,
+            default_value=b"".decode("utf-8"),
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="save_samples",
+            full_name="FortuneTellerConfig.save_samples",
+            index=1,
+            number=2,
+            type=8,
+            cpp_type=7,
+            label=1,
+            has_default_value=False,
+            default_value=False,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="oracle",
+            full_name="FortuneTellerConfig.oracle",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="predictor",
+            full_name="FortuneTellerConfig.predictor",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[_FORTUNETELLERCONFIG_ORACLECONFIG,],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[
+        _descriptor.OneofDescriptor(
+            name="teller",
+            full_name="FortuneTellerConfig.teller",
+            index=0,
+            containing_type=None,
+            create_key=_descriptor._internal_create_key,
+            fields=[],
+        ),
+    ],
+    serialized_start=2068,
+    serialized_end=2318,
 )
 
 
 _SIMULATIONCONFIG = _descriptor.Descriptor(
-  name='SimulationConfig',
-  full_name='SimulationConfig',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  create_key=_descriptor._internal_create_key,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='input', full_name='SimulationConfig.input', index=0,
-      number=1, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='filter', full_name='SimulationConfig.filter', index=1,
-      number=2, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='filtered_samples', full_name='SimulationConfig.filtered_samples', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='time_aligned_samples', full_name='SimulationConfig.time_aligned_samples', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='metric', full_name='SimulationConfig.metric', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='samples_with_abstract_metrics', full_name='SimulationConfig.samples_with_abstract_metrics', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='reset_and_shift', full_name='SimulationConfig.reset_and_shift', index=6,
-      number=7, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='samples_with_reset_and_shift', full_name='SimulationConfig.samples_with_reset_and_shift', index=7,
-      number=8, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scheduler', full_name='SimulationConfig.scheduler', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='scheduled_samples', full_name='SimulationConfig.scheduled_samples', index=9,
-      number=10, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='fortune_teller', full_name='SimulationConfig.fortune_teller', index=10,
-      number=11, type=11, cpp_type=10, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-    _descriptor.FieldDescriptor(
-      name='simulation_result', full_name='SimulationConfig.simulation_result', index=11,
-      number=12, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2040,
-  serialized_end=2546,
+    name="SimulationConfig",
+    full_name="SimulationConfig",
+    filename=None,
+    file=DESCRIPTOR,
+    containing_type=None,
+    create_key=_descriptor._internal_create_key,
+    fields=[
+        _descriptor.FieldDescriptor(
+            name="input",
+            full_name="SimulationConfig.input",
+            index=0,
+            number=1,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="filter",
+            full_name="SimulationConfig.filter",
+            index=1,
+            number=2,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="filtered_samples",
+            full_name="SimulationConfig.filtered_samples",
+            index=2,
+            number=3,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="time_aligned_samples",
+            full_name="SimulationConfig.time_aligned_samples",
+            index=3,
+            number=4,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="metric",
+            full_name="SimulationConfig.metric",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="samples_with_abstract_metrics",
+            full_name="SimulationConfig.samples_with_abstract_metrics",
+            index=5,
+            number=6,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="reset_and_shift",
+            full_name="SimulationConfig.reset_and_shift",
+            index=6,
+            number=7,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="samples_with_reset_and_shift",
+            full_name="SimulationConfig.samples_with_reset_and_shift",
+            index=7,
+            number=8,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="scheduler",
+            full_name="SimulationConfig.scheduler",
+            index=8,
+            number=9,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="scheduled_samples",
+            full_name="SimulationConfig.scheduled_samples",
+            index=9,
+            number=10,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="fortune_teller",
+            full_name="SimulationConfig.fortune_teller",
+            index=10,
+            number=11,
+            type=11,
+            cpp_type=10,
+            label=3,
+            has_default_value=False,
+            default_value=[],
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="simulation_result",
+            full_name="SimulationConfig.simulation_result",
+            index=11,
+            number=12,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+    ],
+    extensions=[],
+    nested_types=[],
+    enum_types=[],
+    serialized_options=None,
+    is_extendable=False,
+    syntax="proto2",
+    extension_ranges=[],
+    oneofs=[],
+    serialized_start=2321,
+    serialized_end=2827,
 )
 
-_VMFILTER.fields_by_name['priority_range'].message_type = _INT64RANGE
-_VMFILTER.fields_by_name['scheduling_class_range'].message_type = _INT64RANGE
-_LOADORWRITE.fields_by_name['input'].message_type = _DATALOCATION
-_LOADORWRITE.fields_by_name['output'].message_type = _DATALOCATION
-_LOADORWRITE.oneofs_by_name['load_or_write'].fields.append(
-  _LOADORWRITE.fields_by_name['input'])
-_LOADORWRITE.fields_by_name['input'].containing_oneof = _LOADORWRITE.oneofs_by_name['load_or_write']
-_LOADORWRITE.oneofs_by_name['load_or_write'].fields.append(
-  _LOADORWRITE.fields_by_name['output'])
-_LOADORWRITE.fields_by_name['output'].containing_oneof = _LOADORWRITE.oneofs_by_name['load_or_write']
-_ABSTRACTMETRICSELECTOR.oneofs_by_name['metric'].fields.append(
-  _ABSTRACTMETRICSELECTOR.fields_by_name['max_memory_usage'])
-_ABSTRACTMETRICSELECTOR.fields_by_name['max_memory_usage'].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name['metric']
-_ABSTRACTMETRICSELECTOR.oneofs_by_name['metric'].fields.append(
-  _ABSTRACTMETRICSELECTOR.fields_by_name['cpu_usage_percentile'])
-_ABSTRACTMETRICSELECTOR.fields_by_name['cpu_usage_percentile'].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name['metric']
-_ABSTRACTMETRICSELECTOR.oneofs_by_name['metric'].fields.append(
-  _ABSTRACTMETRICSELECTOR.fields_by_name['avg_cpu_usage'])
-_ABSTRACTMETRICSELECTOR.fields_by_name['avg_cpu_usage'].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name['metric']
-_ABSTRACTMETRICSELECTOR.oneofs_by_name['metric'].fields.append(
-  _ABSTRACTMETRICSELECTOR.fields_by_name['avg_memory_usage'])
-_ABSTRACTMETRICSELECTOR.fields_by_name['avg_memory_usage'].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name['metric']
-_ABSTRACTMETRICSELECTOR.oneofs_by_name['metric'].fields.append(
-  _ABSTRACTMETRICSELECTOR.fields_by_name['max_cpu_usage'])
-_ABSTRACTMETRICSELECTOR.fields_by_name['max_cpu_usage'].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name['metric']
-_RESETANDSHIFT.fields_by_name['random_shift'].message_type = _INT64RANGE
+_VMFILTER.fields_by_name["priority_range"].message_type = _INT64RANGE
+_VMFILTER.fields_by_name["scheduling_class_range"].message_type = _INT64RANGE
+_LOADORWRITE.fields_by_name["input"].message_type = _DATALOCATION
+_LOADORWRITE.fields_by_name["output"].message_type = _DATALOCATION
+_LOADORWRITE.oneofs_by_name["load_or_write"].fields.append(
+    _LOADORWRITE.fields_by_name["input"]
+)
+_LOADORWRITE.fields_by_name["input"].containing_oneof = _LOADORWRITE.oneofs_by_name[
+    "load_or_write"
+]
+_LOADORWRITE.oneofs_by_name["load_or_write"].fields.append(
+    _LOADORWRITE.fields_by_name["output"]
+)
+_LOADORWRITE.fields_by_name["output"].containing_oneof = _LOADORWRITE.oneofs_by_name[
+    "load_or_write"
+]
+_ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"].fields.append(
+    _ABSTRACTMETRICSELECTOR.fields_by_name["max_memory_usage"]
+)
+_ABSTRACTMETRICSELECTOR.fields_by_name[
+    "max_memory_usage"
+].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"]
+_ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"].fields.append(
+    _ABSTRACTMETRICSELECTOR.fields_by_name["cpu_usage_percentile"]
+)
+_ABSTRACTMETRICSELECTOR.fields_by_name[
+    "cpu_usage_percentile"
+].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"]
+_ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"].fields.append(
+    _ABSTRACTMETRICSELECTOR.fields_by_name["avg_cpu_usage"]
+)
+_ABSTRACTMETRICSELECTOR.fields_by_name[
+    "avg_cpu_usage"
+].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"]
+_ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"].fields.append(
+    _ABSTRACTMETRICSELECTOR.fields_by_name["avg_memory_usage"]
+)
+_ABSTRACTMETRICSELECTOR.fields_by_name[
+    "avg_memory_usage"
+].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"]
+_ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"].fields.append(
+    _ABSTRACTMETRICSELECTOR.fields_by_name["max_cpu_usage"]
+)
+_ABSTRACTMETRICSELECTOR.fields_by_name[
+    "max_cpu_usage"
+].containing_oneof = _ABSTRACTMETRICSELECTOR.oneofs_by_name["metric"]
+_RESETANDSHIFT.fields_by_name["random_shift"].message_type = _INT64RANGE
 _SCHEDULER_ATRANDOM.containing_type = _SCHEDULER
-_SCHEDULER.fields_by_name['at_random'].message_type = _SCHEDULER_ATRANDOM
-_SCHEDULER.oneofs_by_name['scheduler'].fields.append(
-  _SCHEDULER.fields_by_name['at_random'])
-_SCHEDULER.fields_by_name['at_random'].containing_oneof = _SCHEDULER.oneofs_by_name['scheduler']
-_SCHEDULER.oneofs_by_name['scheduler'].fields.append(
-  _SCHEDULER.fields_by_name['by_machine_id'])
-_SCHEDULER.fields_by_name['by_machine_id'].containing_oneof = _SCHEDULER.oneofs_by_name['scheduler']
-_SCHEDULER.oneofs_by_name['scheduler'].fields.append(
-  _SCHEDULER.fields_by_name['by_vm_unique_id'])
-_SCHEDULER.fields_by_name['by_vm_unique_id'].containing_oneof = _SCHEDULER.oneofs_by_name['scheduler']
+_SCHEDULER.fields_by_name["at_random"].message_type = _SCHEDULER_ATRANDOM
+_SCHEDULER.oneofs_by_name["scheduler"].fields.append(
+    _SCHEDULER.fields_by_name["at_random"]
+)
+_SCHEDULER.fields_by_name["at_random"].containing_oneof = _SCHEDULER.oneofs_by_name[
+    "scheduler"
+]
+_SCHEDULER.oneofs_by_name["scheduler"].fields.append(
+    _SCHEDULER.fields_by_name["by_machine_id"]
+)
+_SCHEDULER.fields_by_name["by_machine_id"].containing_oneof = _SCHEDULER.oneofs_by_name[
+    "scheduler"
+]
+_SCHEDULER.oneofs_by_name["scheduler"].fields.append(
+    _SCHEDULER.fields_by_name["by_vm_unique_id"]
+)
+_SCHEDULER.fields_by_name[
+    "by_vm_unique_id"
+].containing_oneof = _SCHEDULER.oneofs_by_name["scheduler"]
 _PREDICTORCONFIG_AVGPREDICTORCONFIG.containing_type = _PREDICTORCONFIG
+_PREDICTORCONFIG_LIMITPREDICTORCONFIG.containing_type = _PREDICTORCONFIG
 _PREDICTORCONFIG_MAXPREDICTORCONFIG.containing_type = _PREDICTORCONFIG
 _PREDICTORCONFIG_PERVMPERCENTILECONFIG.containing_type = _PREDICTORCONFIG
+_PREDICTORCONFIG_PERMACHINEPERCENTILECONFIG.containing_type = _PREDICTORCONFIG
 _PREDICTORCONFIG_NSIGMACONFIG.containing_type = _PREDICTORCONFIG
 _PREDICTORCONFIG_AVGDECORATORCONFIG.containing_type = _PREDICTORCONFIG
 _PREDICTORCONFIG_MAXDECORATORCONFIG.containing_type = _PREDICTORCONFIG
-_PREDICTORCONFIG.fields_by_name['decorated_predictors'].message_type = _PREDICTORCONFIG
-_PREDICTORCONFIG.fields_by_name['avg_predictor'].message_type = _PREDICTORCONFIG_AVGPREDICTORCONFIG
-_PREDICTORCONFIG.fields_by_name['max_predictor'].message_type = _PREDICTORCONFIG_MAXPREDICTORCONFIG
-_PREDICTORCONFIG.fields_by_name['avg_decorator'].message_type = _PREDICTORCONFIG_AVGDECORATORCONFIG
-_PREDICTORCONFIG.fields_by_name['max_decorator'].message_type = _PREDICTORCONFIG_MAXDECORATORCONFIG
-_PREDICTORCONFIG.fields_by_name['per_vm_percentile_predictor'].message_type = _PREDICTORCONFIG_PERVMPERCENTILECONFIG
-_PREDICTORCONFIG.fields_by_name['n_sigma_predictor'].message_type = _PREDICTORCONFIG_NSIGMACONFIG
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['avg_predictor'])
-_PREDICTORCONFIG.fields_by_name['avg_predictor'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['max_predictor'])
-_PREDICTORCONFIG.fields_by_name['max_predictor'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['avg_decorator'])
-_PREDICTORCONFIG.fields_by_name['avg_decorator'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['max_decorator'])
-_PREDICTORCONFIG.fields_by_name['max_decorator'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['per_vm_percentile_predictor'])
-_PREDICTORCONFIG.fields_by_name['per_vm_percentile_predictor'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
-_PREDICTORCONFIG.oneofs_by_name['predictor'].fields.append(
-  _PREDICTORCONFIG.fields_by_name['n_sigma_predictor'])
-_PREDICTORCONFIG.fields_by_name['n_sigma_predictor'].containing_oneof = _PREDICTORCONFIG.oneofs_by_name['predictor']
+_PREDICTORCONFIG.fields_by_name["decorated_predictors"].message_type = _PREDICTORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "avg_predictor"
+].message_type = _PREDICTORCONFIG_AVGPREDICTORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "max_predictor"
+].message_type = _PREDICTORCONFIG_MAXPREDICTORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "avg_decorator"
+].message_type = _PREDICTORCONFIG_AVGDECORATORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "max_decorator"
+].message_type = _PREDICTORCONFIG_MAXDECORATORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "per_vm_percentile_predictor"
+].message_type = _PREDICTORCONFIG_PERVMPERCENTILECONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "n_sigma_predictor"
+].message_type = _PREDICTORCONFIG_NSIGMACONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "limit_predictor"
+].message_type = _PREDICTORCONFIG_LIMITPREDICTORCONFIG
+_PREDICTORCONFIG.fields_by_name[
+    "per_machine_percentile_predictor"
+].message_type = _PREDICTORCONFIG_PERMACHINEPERCENTILECONFIG
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["avg_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "avg_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["max_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "max_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["avg_decorator"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "avg_decorator"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["max_decorator"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "max_decorator"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["per_vm_percentile_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "per_vm_percentile_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["n_sigma_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "n_sigma_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["limit_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "limit_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
+_PREDICTORCONFIG.oneofs_by_name["predictor"].fields.append(
+    _PREDICTORCONFIG.fields_by_name["per_machine_percentile_predictor"]
+)
+_PREDICTORCONFIG.fields_by_name[
+    "per_machine_percentile_predictor"
+].containing_oneof = _PREDICTORCONFIG.oneofs_by_name["predictor"]
 _FORTUNETELLERCONFIG_ORACLECONFIG.containing_type = _FORTUNETELLERCONFIG
-_FORTUNETELLERCONFIG.fields_by_name['oracle'].message_type = _FORTUNETELLERCONFIG_ORACLECONFIG
-_FORTUNETELLERCONFIG.fields_by_name['predictor'].message_type = _PREDICTORCONFIG
-_FORTUNETELLERCONFIG.oneofs_by_name['teller'].fields.append(
-  _FORTUNETELLERCONFIG.fields_by_name['oracle'])
-_FORTUNETELLERCONFIG.fields_by_name['oracle'].containing_oneof = _FORTUNETELLERCONFIG.oneofs_by_name['teller']
-_FORTUNETELLERCONFIG.oneofs_by_name['teller'].fields.append(
-  _FORTUNETELLERCONFIG.fields_by_name['predictor'])
-_FORTUNETELLERCONFIG.fields_by_name['predictor'].containing_oneof = _FORTUNETELLERCONFIG.oneofs_by_name['teller']
-_SIMULATIONCONFIG.fields_by_name['input'].message_type = _DATALOCATION
-_SIMULATIONCONFIG.fields_by_name['filter'].message_type = _VMFILTER
-_SIMULATIONCONFIG.fields_by_name['filtered_samples'].message_type = _LOADORWRITE
-_SIMULATIONCONFIG.fields_by_name['time_aligned_samples'].message_type = _LOADORWRITE
-_SIMULATIONCONFIG.fields_by_name['metric'].message_type = _ABSTRACTMETRICSELECTOR
-_SIMULATIONCONFIG.fields_by_name['samples_with_abstract_metrics'].message_type = _LOADORWRITE
-_SIMULATIONCONFIG.fields_by_name['reset_and_shift'].message_type = _RESETANDSHIFT
-_SIMULATIONCONFIG.fields_by_name['samples_with_reset_and_shift'].message_type = _LOADORWRITE
-_SIMULATIONCONFIG.fields_by_name['scheduler'].message_type = _SCHEDULER
-_SIMULATIONCONFIG.fields_by_name['scheduled_samples'].message_type = _LOADORWRITE
-_SIMULATIONCONFIG.fields_by_name['fortune_teller'].message_type = _FORTUNETELLERCONFIG
-_SIMULATIONCONFIG.fields_by_name['simulation_result'].message_type = _DATALOCATION
-DESCRIPTOR.message_types_by_name['Int64Range'] = _INT64RANGE
-DESCRIPTOR.message_types_by_name['DataLocation'] = _DATALOCATION
-DESCRIPTOR.message_types_by_name['VMFilter'] = _VMFILTER
-DESCRIPTOR.message_types_by_name['LoadOrWrite'] = _LOADORWRITE
-DESCRIPTOR.message_types_by_name['AbstractMetricSelector'] = _ABSTRACTMETRICSELECTOR
-DESCRIPTOR.message_types_by_name['ResetAndShift'] = _RESETANDSHIFT
-DESCRIPTOR.message_types_by_name['Scheduler'] = _SCHEDULER
-DESCRIPTOR.message_types_by_name['PredictorConfig'] = _PREDICTORCONFIG
-DESCRIPTOR.message_types_by_name['FortuneTellerConfig'] = _FORTUNETELLERCONFIG
-DESCRIPTOR.message_types_by_name['SimulationConfig'] = _SIMULATIONCONFIG
+_FORTUNETELLERCONFIG.fields_by_name[
+    "oracle"
+].message_type = _FORTUNETELLERCONFIG_ORACLECONFIG
+_FORTUNETELLERCONFIG.fields_by_name["predictor"].message_type = _PREDICTORCONFIG
+_FORTUNETELLERCONFIG.oneofs_by_name["teller"].fields.append(
+    _FORTUNETELLERCONFIG.fields_by_name["oracle"]
+)
+_FORTUNETELLERCONFIG.fields_by_name[
+    "oracle"
+].containing_oneof = _FORTUNETELLERCONFIG.oneofs_by_name["teller"]
+_FORTUNETELLERCONFIG.oneofs_by_name["teller"].fields.append(
+    _FORTUNETELLERCONFIG.fields_by_name["predictor"]
+)
+_FORTUNETELLERCONFIG.fields_by_name[
+    "predictor"
+].containing_oneof = _FORTUNETELLERCONFIG.oneofs_by_name["teller"]
+_SIMULATIONCONFIG.fields_by_name["input"].message_type = _DATALOCATION
+_SIMULATIONCONFIG.fields_by_name["filter"].message_type = _VMFILTER
+_SIMULATIONCONFIG.fields_by_name["filtered_samples"].message_type = _LOADORWRITE
+_SIMULATIONCONFIG.fields_by_name["time_aligned_samples"].message_type = _LOADORWRITE
+_SIMULATIONCONFIG.fields_by_name["metric"].message_type = _ABSTRACTMETRICSELECTOR
+_SIMULATIONCONFIG.fields_by_name[
+    "samples_with_abstract_metrics"
+].message_type = _LOADORWRITE
+_SIMULATIONCONFIG.fields_by_name["reset_and_shift"].message_type = _RESETANDSHIFT
+_SIMULATIONCONFIG.fields_by_name[
+    "samples_with_reset_and_shift"
+].message_type = _LOADORWRITE
+_SIMULATIONCONFIG.fields_by_name["scheduler"].message_type = _SCHEDULER
+_SIMULATIONCONFIG.fields_by_name["scheduled_samples"].message_type = _LOADORWRITE
+_SIMULATIONCONFIG.fields_by_name["fortune_teller"].message_type = _FORTUNETELLERCONFIG
+_SIMULATIONCONFIG.fields_by_name["simulation_result"].message_type = _DATALOCATION
+DESCRIPTOR.message_types_by_name["Int64Range"] = _INT64RANGE
+DESCRIPTOR.message_types_by_name["DataLocation"] = _DATALOCATION
+DESCRIPTOR.message_types_by_name["VMFilter"] = _VMFILTER
+DESCRIPTOR.message_types_by_name["LoadOrWrite"] = _LOADORWRITE
+DESCRIPTOR.message_types_by_name["AbstractMetricSelector"] = _ABSTRACTMETRICSELECTOR
+DESCRIPTOR.message_types_by_name["ResetAndShift"] = _RESETANDSHIFT
+DESCRIPTOR.message_types_by_name["Scheduler"] = _SCHEDULER
+DESCRIPTOR.message_types_by_name["PredictorConfig"] = _PREDICTORCONFIG
+DESCRIPTOR.message_types_by_name["FortuneTellerConfig"] = _FORTUNETELLERCONFIG
+DESCRIPTOR.message_types_by_name["SimulationConfig"] = _SIMULATIONCONFIG
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Int64Range = _reflection.GeneratedProtocolMessageType('Int64Range', (_message.Message,), {
-  'DESCRIPTOR' : _INT64RANGE,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:Int64Range)
-  })
+Int64Range = _reflection.GeneratedProtocolMessageType(
+    "Int64Range",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _INT64RANGE,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:Int64Range)
+    },
+)
 _sym_db.RegisterMessage(Int64Range)
 
-DataLocation = _reflection.GeneratedProtocolMessageType('DataLocation', (_message.Message,), {
-  'DESCRIPTOR' : _DATALOCATION,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:DataLocation)
-  })
+DataLocation = _reflection.GeneratedProtocolMessageType(
+    "DataLocation",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _DATALOCATION,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:DataLocation)
+    },
+)
 _sym_db.RegisterMessage(DataLocation)
 
-VMFilter = _reflection.GeneratedProtocolMessageType('VMFilter', (_message.Message,), {
-  'DESCRIPTOR' : _VMFILTER,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:VMFilter)
-  })
+VMFilter = _reflection.GeneratedProtocolMessageType(
+    "VMFilter",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _VMFILTER,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:VMFilter)
+    },
+)
 _sym_db.RegisterMessage(VMFilter)
 
-LoadOrWrite = _reflection.GeneratedProtocolMessageType('LoadOrWrite', (_message.Message,), {
-  'DESCRIPTOR' : _LOADORWRITE,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:LoadOrWrite)
-  })
+LoadOrWrite = _reflection.GeneratedProtocolMessageType(
+    "LoadOrWrite",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _LOADORWRITE,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:LoadOrWrite)
+    },
+)
 _sym_db.RegisterMessage(LoadOrWrite)
 
-AbstractMetricSelector = _reflection.GeneratedProtocolMessageType('AbstractMetricSelector', (_message.Message,), {
-  'DESCRIPTOR' : _ABSTRACTMETRICSELECTOR,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:AbstractMetricSelector)
-  })
+AbstractMetricSelector = _reflection.GeneratedProtocolMessageType(
+    "AbstractMetricSelector",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _ABSTRACTMETRICSELECTOR,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:AbstractMetricSelector)
+    },
+)
 _sym_db.RegisterMessage(AbstractMetricSelector)
 
-ResetAndShift = _reflection.GeneratedProtocolMessageType('ResetAndShift', (_message.Message,), {
-  'DESCRIPTOR' : _RESETANDSHIFT,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:ResetAndShift)
-  })
+ResetAndShift = _reflection.GeneratedProtocolMessageType(
+    "ResetAndShift",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _RESETANDSHIFT,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:ResetAndShift)
+    },
+)
 _sym_db.RegisterMessage(ResetAndShift)
 
-Scheduler = _reflection.GeneratedProtocolMessageType('Scheduler', (_message.Message,), {
-
-  'AtRandom' : _reflection.GeneratedProtocolMessageType('AtRandom', (_message.Message,), {
-    'DESCRIPTOR' : _SCHEDULER_ATRANDOM,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:Scheduler.AtRandom)
-    })
-  ,
-  'DESCRIPTOR' : _SCHEDULER,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:Scheduler)
-  })
+Scheduler = _reflection.GeneratedProtocolMessageType(
+    "Scheduler",
+    (_message.Message,),
+    {
+        "AtRandom": _reflection.GeneratedProtocolMessageType(
+            "AtRandom",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _SCHEDULER_ATRANDOM,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:Scheduler.AtRandom)
+            },
+        ),
+        "DESCRIPTOR": _SCHEDULER,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:Scheduler)
+    },
+)
 _sym_db.RegisterMessage(Scheduler)
 _sym_db.RegisterMessage(Scheduler.AtRandom)
 
-PredictorConfig = _reflection.GeneratedProtocolMessageType('PredictorConfig', (_message.Message,), {
-
-  'AvgPredictorConfig' : _reflection.GeneratedProtocolMessageType('AvgPredictorConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_AVGPREDICTORCONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.AvgPredictorConfig)
-    })
-  ,
-
-  'MaxPredictorConfig' : _reflection.GeneratedProtocolMessageType('MaxPredictorConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_MAXPREDICTORCONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.MaxPredictorConfig)
-    })
-  ,
-
-  'PerVMPercentileConfig' : _reflection.GeneratedProtocolMessageType('PerVMPercentileConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_PERVMPERCENTILECONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.PerVMPercentileConfig)
-    })
-  ,
-
-  'NSigmaConfig' : _reflection.GeneratedProtocolMessageType('NSigmaConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_NSIGMACONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.NSigmaConfig)
-    })
-  ,
-
-  'AvgDecoratorConfig' : _reflection.GeneratedProtocolMessageType('AvgDecoratorConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_AVGDECORATORCONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.AvgDecoratorConfig)
-    })
-  ,
-
-  'MaxDecoratorConfig' : _reflection.GeneratedProtocolMessageType('MaxDecoratorConfig', (_message.Message,), {
-    'DESCRIPTOR' : _PREDICTORCONFIG_MAXDECORATORCONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:PredictorConfig.MaxDecoratorConfig)
-    })
-  ,
-  'DESCRIPTOR' : _PREDICTORCONFIG,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:PredictorConfig)
-  })
+PredictorConfig = _reflection.GeneratedProtocolMessageType(
+    "PredictorConfig",
+    (_message.Message,),
+    {
+        "AvgPredictorConfig": _reflection.GeneratedProtocolMessageType(
+            "AvgPredictorConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_AVGPREDICTORCONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.AvgPredictorConfig)
+            },
+        ),
+        "LimitPredictorConfig": _reflection.GeneratedProtocolMessageType(
+            "LimitPredictorConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_LIMITPREDICTORCONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.LimitPredictorConfig)
+            },
+        ),
+        "MaxPredictorConfig": _reflection.GeneratedProtocolMessageType(
+            "MaxPredictorConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_MAXPREDICTORCONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.MaxPredictorConfig)
+            },
+        ),
+        "PerVMPercentileConfig": _reflection.GeneratedProtocolMessageType(
+            "PerVMPercentileConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_PERVMPERCENTILECONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.PerVMPercentileConfig)
+            },
+        ),
+        "PerMachinePercentileConfig": _reflection.GeneratedProtocolMessageType(
+            "PerMachinePercentileConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_PERMACHINEPERCENTILECONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.PerMachinePercentileConfig)
+            },
+        ),
+        "NSigmaConfig": _reflection.GeneratedProtocolMessageType(
+            "NSigmaConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_NSIGMACONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.NSigmaConfig)
+            },
+        ),
+        "AvgDecoratorConfig": _reflection.GeneratedProtocolMessageType(
+            "AvgDecoratorConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_AVGDECORATORCONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.AvgDecoratorConfig)
+            },
+        ),
+        "MaxDecoratorConfig": _reflection.GeneratedProtocolMessageType(
+            "MaxDecoratorConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _PREDICTORCONFIG_MAXDECORATORCONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:PredictorConfig.MaxDecoratorConfig)
+            },
+        ),
+        "DESCRIPTOR": _PREDICTORCONFIG,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:PredictorConfig)
+    },
+)
 _sym_db.RegisterMessage(PredictorConfig)
 _sym_db.RegisterMessage(PredictorConfig.AvgPredictorConfig)
+_sym_db.RegisterMessage(PredictorConfig.LimitPredictorConfig)
 _sym_db.RegisterMessage(PredictorConfig.MaxPredictorConfig)
 _sym_db.RegisterMessage(PredictorConfig.PerVMPercentileConfig)
+_sym_db.RegisterMessage(PredictorConfig.PerMachinePercentileConfig)
 _sym_db.RegisterMessage(PredictorConfig.NSigmaConfig)
 _sym_db.RegisterMessage(PredictorConfig.AvgDecoratorConfig)
 _sym_db.RegisterMessage(PredictorConfig.MaxDecoratorConfig)
 
-FortuneTellerConfig = _reflection.GeneratedProtocolMessageType('FortuneTellerConfig', (_message.Message,), {
-
-  'OracleConfig' : _reflection.GeneratedProtocolMessageType('OracleConfig', (_message.Message,), {
-    'DESCRIPTOR' : _FORTUNETELLERCONFIG_ORACLECONFIG,
-    '__module__' : 'simulator.config_pb2'
-    # @@protoc_insertion_point(class_scope:FortuneTellerConfig.OracleConfig)
-    })
-  ,
-  'DESCRIPTOR' : _FORTUNETELLERCONFIG,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:FortuneTellerConfig)
-  })
+FortuneTellerConfig = _reflection.GeneratedProtocolMessageType(
+    "FortuneTellerConfig",
+    (_message.Message,),
+    {
+        "OracleConfig": _reflection.GeneratedProtocolMessageType(
+            "OracleConfig",
+            (_message.Message,),
+            {
+                "DESCRIPTOR": _FORTUNETELLERCONFIG_ORACLECONFIG,
+                "__module__": "simulator.config_pb2"
+                # @@protoc_insertion_point(class_scope:FortuneTellerConfig.OracleConfig)
+            },
+        ),
+        "DESCRIPTOR": _FORTUNETELLERCONFIG,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:FortuneTellerConfig)
+    },
+)
 _sym_db.RegisterMessage(FortuneTellerConfig)
 _sym_db.RegisterMessage(FortuneTellerConfig.OracleConfig)
 
-SimulationConfig = _reflection.GeneratedProtocolMessageType('SimulationConfig', (_message.Message,), {
-  'DESCRIPTOR' : _SIMULATIONCONFIG,
-  '__module__' : 'simulator.config_pb2'
-  # @@protoc_insertion_point(class_scope:SimulationConfig)
-  })
+SimulationConfig = _reflection.GeneratedProtocolMessageType(
+    "SimulationConfig",
+    (_message.Message,),
+    {
+        "DESCRIPTOR": _SIMULATIONCONFIG,
+        "__module__": "simulator.config_pb2"
+        # @@protoc_insertion_point(class_scope:SimulationConfig)
+    },
+)
 _sym_db.RegisterMessage(SimulationConfig)
 
 

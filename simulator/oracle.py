@@ -57,6 +57,11 @@ class Oracle:
 
             future_total_usages.append(sum(usages_in_snapshot))
 
-        predicted_peak = np.percentile(np.array(future_total_usages), self.percentile)
+        predicted_peak = np.nanpercentile(
+            np.array(future_total_usages), self.percentile
+        )
+
+        if np.isnan(predicted_peak) == True:
+            predicted_peak = current_total_limit
 
         return (predicted_peak, current_total_limit)

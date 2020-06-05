@@ -16,7 +16,7 @@ import numpy as np
 
 
 def _MinutesToMicroseconds(minutes):
-    return minutes * 60 * 1000000
+    return minutes * 60 * 1_000_000
 
 
 def _AssignUniqueIDAndFlooredTimeAsKey(row):
