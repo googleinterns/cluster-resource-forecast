@@ -1,0 +1,10 @@
+{
+    "fields": [
+        {"name": "fortune_teller_name", "type": "STRING", "mode": "REQUIRED"},
+        {"name": "simulated_time", "type": "INT64", "mode": "REQUIRED"},
+        {"name": "simulated_machine", "type": "STRING", "mode": "REQUIRED"},
+        {"name": "predicted_peak", "type": "FLOAT64", "mode": "REQUIRED"},
+        {"name": "total_usage", "type": "FLOAT64", "mode": "REQUIRED"},
+        {"name": "limit", "type": "FLOAT64", "mode": "REQUIRED"}
+    ]
+}
