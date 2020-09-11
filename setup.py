@@ -88,8 +88,3 @@ setup(
     packages=find_packages(),
     cmdclass={"build_py": build_py, "clean": clean},
 )
-=======
-import setuptools
-
-setuptools.setup(name="simulator", packages=setuptools.find_packages())
->>>>>>> ff2aaf5... pair usage and events with unittests
