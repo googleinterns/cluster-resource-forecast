@@ -70,4 +70,4 @@ class NSigmaPredictor(StatefulPredictor):
         for vm_state_and_num_sample in vm_states_and_num_samples:
             if len(vm_state_and_num_sample.vm_state.limit) > 0:
                 current_total_limit += vm_state_and_num_sample.vm_state.limit[0]
-        return predicted_peak * predicted_peak
+        return predicted_peak * current_total_limit
