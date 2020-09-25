@@ -41,21 +41,33 @@ class NSigmaPredictor(StatefulPredictor):
         usage = vm_measure["sample"]["abstract_metrics"]["usage"]
         if self.cap_to_limit == True:
             usage = min(usage, limit)
-        vm_state.usage.append(usage)
-        vm_state.limit.append(limit)
+        vm_state.usage.appendleft(usage)
+        vm_state.limit.appendleft(limit)
 
     def Predict(self, vm_states_and_num_samples):
 
         vms_normalized_usages = []
-        for vm_state_and_num_sample in vm_states_and_num_samples:
-            normalized_usage = list(vm_state_and_num_sample.vm_state.usage) / list(
-                vm_state_and_num_sample.vm_state.limit
-            )
-            vms_percentiles.append(normalized_usage)
-
-        total_normalized_usage = np.sum(vms_normalized_usages, axis=0)
+        total_normalized_usage = []
+        for idx in range(self.num_history_samples):
+            total_limit = 0
+            total_usage = 0
+            num_vms = 0
+            for vm_state_and_num_sample in vm_states_and_num_samples:
+                if idx < len(vm_state_and_num_sample.vm_state.usage):
+                    total_usage += vm_state_and_num_sample.vm_state.usage[idx]
+                    total_limit += vm_state_and_num_sample.vm_state.limit[idx]
+                    num_vms += 1
+            usage_to_limit_ratio = 0
+            if num_vms == 0:
+                continue
+            if total_limit > 0:
+                usage_to_limit_ratio = total_usage / total_limit
+            total_normalized_usage.append(usage_to_limit_ratio)
         mean = np.mean(total_normalized_usage)
         standard_deviation = statistics.stdev(total_normalized_usage)
-        predicted_peak = mean + self.n * standard_deviation
-
-        return predicted_peak
+        predicted_peak = min(1.0, mean + self.n * standard_deviation)
+        current_total_limit = 0
+        for vm_state_and_num_sample in vm_states_and_num_samples:
+            if len(vm_state_and_num_sample.vm_state.limit) > 0:
+                current_total_limit += vm_state_and_num_sample.vm_state.limit[0]
+        return predicted_peak * predicted_peak
