@@ -59,25 +59,31 @@ message PredictorConfig {
   message AvgPredictorConfig {
     optional int64 min_num_samples = 1;
     optional bool cap_to_limit = 2;
-    optional double percentile = 3;
+  }
+  message LimitPredictorConfig {
+    optional int64 min_num_samples = 1;
   }
   message MaxPredictorConfig {
     optional int64 min_num_samples = 1;
     optional bool cap_to_limit = 2;
-    optional double percentile = 3;
   }
   message PerVMPercentileConfig {
     optional int64 min_num_samples = 1;
     optional bool cap_to_limit = 2;
-    optional double percentile = 3;
+    optional double percentile = 3 [default = 100];
+    optional int64 num_history_samples = 4;
+  }
+  message PerMachinePercentileConfig {
+    optional int64 min_num_samples = 1;
+    optional bool cap_to_limit = 2;
+    optional double percentile = 3 [default = 100];
     optional int64 num_history_samples = 4;
   }
   message NSigmaConfig {
     optional int64 min_num_samples = 1;
     optional bool cap_to_limit = 2;
-    optional double percentile = 3;
-    optional int64 num_history_samples = 4;
-    optional int64 n = 5;
+    optional int64 num_history_samples = 3;
+    optional int64 n = 4;
   }
   message AvgDecoratorConfig {
   }
@@ -91,6 +97,8 @@ message PredictorConfig {
     MaxDecoratorConfig max_decorator = 4;
     PerVMPercentileConfig per_vm_percentile_predictor = 5;
     NSigmaConfig n_sigma_predictor = 6;
+    LimitPredictorConfig limit_predictor = 7;
+    PerMachinePercentileConfig per_machine_percentile_predictor = 8;
   }
 }
 

@@ -18,17 +18,20 @@ class _StateAndNumSamples:
         self.vm_num_samples = vm_num_samples
 
 
-class _Predictor:
+class Predictor:
     def __init__(self, config, decorated_predictors=None):
         pass
 
-    def _UpdateMeasures(self, snapshot):
-        pass
+    def UpdateMeasures(self, snapshot):
+        raise NotImplementedError
+
+    def _Predict(self, vmstates):
+        raise NotImplementedError
 
 
-class StatefulPredictor(_Predictor):
-    def __init__(self, config, decorated_predictors=None):
-        super().__init__(config, decorated_predictors)
+class StatefulPredictor(Predictor):
+    def __init__(self, config):
+        super().__init__(config)
         self.warm_vms = {}
         self.cold_vms = {}
         self.vm_limits = {}
@@ -88,7 +91,11 @@ class StatefulPredictor(_Predictor):
             if key in self.vm_limits
         )
 
-        predicted_peak = self.Predict(list(self.warm_vms.values()))
+        predicted_peak = (
+            0
+            if not list(self.warm_vms.values())
+            else self.Predict(list(self.warm_vms.values()))
+        )
         total_limit_for_cold_vms = sum(
             self.vm_limits[vm_unique_id] for vm_unique_id in self.cold_vms
         )

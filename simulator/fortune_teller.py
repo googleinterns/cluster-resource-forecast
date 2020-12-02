@@ -11,14 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import datetime
 import apache_beam as beam
 import numpy as np
-from collections import deque
-from typing import List
-from simulator.fortune_teller_factory import FortuneTellerFactory
-import sys
 import json
+from collections import deque
+from simulator.fortune_teller_factory import FortuneTellerFactory
 
 
 def _AssignSimulatedMachineIDAsKey(row):
@@ -82,12 +79,25 @@ class _FortuneTeller:
 
         simulated_time = vars(current_snapshot)["measures"][0]["simulated_time"]
         simulated_machine = vars(current_snapshot)["measures"][0]["simulated_machine"]
-        current_total_usage = sum(
-            [
-                usage["sample"]["abstract_metrics"]["usage"]
-                for usage in vars(current_snapshot)["measures"]
-            ]
-        )
+
+        current_usage_list = [
+            usage["sample"]["abstract_metrics"]["usage"]
+            for usage in vars(current_snapshot)["measures"]
+        ]
+
+        current_limit_list = [
+            usage["sample"]["abstract_metrics"]["limit"]
+            for usage in vars(current_snapshot)["measures"]
+        ]
+
+        # TODO: we cap usage by limit by default here.
+        # change that to do only when configured to do so
+        current_usage = [
+            min(usage, limit)
+            for usage, limit in zip(current_usage_list, current_limit_list)
+        ]
+
+        current_total_usage = sum(current_usage)
 
         simulation_result = {
             "fortune_teller_name": self.name,
@@ -105,12 +115,11 @@ class _FortuneTeller:
 
 
 def _FortuneTellerRunner(data, fortune_teller):
-    _, streams = data
+    key, streams = data
 
     running_measures = []
     results = []
     cache = deque()
-    streams = list(streams)
     streams.append(
         {"simulated_time": np.inf, "simulated_machine": None, "sample": None}
     )
@@ -141,18 +150,23 @@ def _FortuneTellerRunner(data, fortune_teller):
             simulation_result = fortune_teller.UpdateMeasures(
                 current_snapshot=current_snapshot, future_snapshot=future_snapshot
             )
-            horizon = vars(current_snapshot)["measures"][0][
-                "simulated_time"
-            ] + _SecondsToMicroseconds(fortune_teller.horizon + TIME_STEP_IN_SEC)
+            if fortune_teller.horizon == 0:
+                horizon = current_time + _SecondsToMicroseconds(fortune_teller.horizon)
+            else:
+                horizon = vars(current_snapshot)["measures"][0][
+                    "simulated_time"
+                ] + _SecondsToMicroseconds(fortune_teller.horizon + TIME_STEP_IN_SEC)
+
             results.append(simulation_result)
 
     return results
 
 
-class _SortBySimulatedTime(beam.DoFn):
-    def process(self, data):
-        key, streams = data
-        yield key, sorted(list(streams), key=lambda k: k["simulated_time"])
+def _SortBySimulatedTime(data):
+    key, streams = data
+    streams = list(streams)
+    streams.sort(key=lambda k: k["simulated_time"])
+    return key, streams
 
 
 def CallFortuneTellerRunner(data, config):
@@ -165,8 +179,8 @@ def CallFortuneTellerRunner(data, config):
         keyed_data | "Group by Machine ID before Sorting" >> beam.GroupByKey()
     )
 
-    sorted_data = grouped_data | "Sort by Simulated Time" >> beam.ParDo(
-        _SortBySimulatedTime()
+    sorted_data = grouped_data | "Sort by Simulated Time" >> beam.Map(
+        _SortBySimulatedTime
     )
 
     results_schema_without_samples_file = open(
@@ -187,22 +201,25 @@ def CallFortuneTellerRunner(data, config):
             lambda elements: elements
         )
 
-        simulation_result_dataset = config.simulation_result.dataset
-        simulation_result_table = (
-            config.simulation_result.table
-            if config.simulation_result.HasField("table")
-            else fortune_teller_config.name
-        )
-
-        if fortune_teller_config.save_samples == True:
-            # TODO: add support for saving samples
-            pass
-        else:
-            unpacked_simulation_results | "Save {} results to BQ table".format(
-                fortune_teller_config.name
-            ) >> beam.io.WriteToBigQuery(
-                "{}.{}".format(simulation_result_dataset, simulation_result_table,),
-                schema=results_schema_without_samples,
-                write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
-                create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
+        if config.simulation_result.dataset:
+            simulation_result_dataset = config.simulation_result.dataset
+            simulation_result_table = (
+                config.simulation_result.table
+                if config.simulation_result.HasField("table")
+                else fortune_teller_config.name
             )
+
+            if fortune_teller_config.save_samples == True:
+                # TODO: add support for saving samples
+                assert False, "Simulator does not support saving samples at present."
+            else:
+                unpacked_simulation_results | "Save {} results to BQ table".format(
+                    fortune_teller_config.name
+                ) >> beam.io.WriteToBigQuery(
+                    "{}.{}".format(simulation_result_dataset, simulation_result_table,),
+                    schema=results_schema_without_samples,
+                    write_disposition=beam.io.BigQueryDisposition.WRITE_TRUNCATE,
+                    create_disposition=beam.io.BigQueryDisposition.CREATE_IF_NEEDED,
+                )
+        else:
+            return unpacked_simulation_results

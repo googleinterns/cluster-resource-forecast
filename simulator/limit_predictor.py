@@ -16,33 +16,25 @@ from simulator.predictor import StatefulPredictor
 
 class _State:
     def __init__(self):
-        self.total_usage = 0
+        self.limit = 0
 
 
-class AvgPredictor(StatefulPredictor):
+class LimitPredictor(StatefulPredictor):
     def __init__(self, config):
         super().__init__(config)
-        self.cap_to_limit = config.cap_to_limit
 
     def CreateState(self, vm_info):
         return _State()
 
     def UpdateState(self, vm_measure, vm_state):
-        limit = vm_measure["sample"]["abstract_metrics"]["limit"]
-        usage = vm_measure["sample"]["abstract_metrics"]["usage"]
-        if self.cap_to_limit == True:
-            usage = min(usage, limit)
-        vm_state.total_usage += usage
+        vm_state.limit = vm_measure["sample"]["abstract_metrics"]["limit"]
 
     def Predict(self, vm_states_and_num_samples):
 
-        vms_avgs = []
+        vms_limits = []
         for vm_state_and_num_sample in vm_states_and_num_samples:
-            vms_avgs.append(
-                vm_state_and_num_sample.vm_state.total_usage
-                / vm_state_and_num_sample.vm_num_samples
-            )
+            vms_limits.append(vm_state_and_num_sample.vm_state.limit)
 
-        predicted_peak = sum(vms_avgs)
+        predicted_peak = sum(vms_limits)
 
         return predicted_peak

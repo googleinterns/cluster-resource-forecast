@@ -53,8 +53,8 @@ def generate_proto(source):
             sys.exit(-1)
 
 
-# List of all .proto files
 proto_src = ["simulator/config.proto"]
+
 
 class build_py(_build_py):
     def run(self):
@@ -63,22 +63,18 @@ class build_py(_build_py):
             generate_proto(f)
         _build_py.run(self)
 
+
 class clean(_clean):
     def run(self):
-        # Delete generated files in the code tree.
         for (dirpath, dirnames, filenames) in os.walk("."):
             for filename in filenames:
                 filepath = os.path.join(dirpath, filename)
                 if filepath.endswith("_pb2.py"):
                     os.remove(filepath)
-        # _clean is an old-style class, so super() doesn't work.
         _clean.run(self)
 
-REQUIRED_PACKAGES = [
-    'numpy',
-    'setuptools',
-    'protobuf>=3.12.2'
-]
+
+REQUIRED_PACKAGES = ["numpy", "setuptools", "protobuf>=3.12.2"]
 
 setup(
     name="simulator",

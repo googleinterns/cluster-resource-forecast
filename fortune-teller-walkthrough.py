@@ -32,6 +32,11 @@ from simulator.fortune_teller import CallFortuneTellerRunner
 from simulator.fortune_teller_factory import PredictorFactory
 from simulator.config_pb2 import SimulationConfig
 from simulator.avg_predictor import AvgPredictor
+from simulator.max_predictor import MaxPredictor
+from simulator.per_vm_percentile_predictor import PerVMPercentilePredictor
+from simulator.per_machine_percentile_predictor import PerMachinePercentilePredictor
+from simulator.n_sigma_predictor import NSigmaPredictor
+from simulator.limit_predictor import LimitPredictor
 
 
 def main(argv=None, save_main_session=True):
@@ -150,9 +155,7 @@ def main(argv=None, save_main_session=True):
         )
 
     # Calling FortuneTeller Runner
-    CallFortuneTellerRunner(
-        scheduled_samples, configs
-    )
+    CallFortuneTellerRunner(scheduled_samples, configs)
 
     # Saving Filtered Samples
     schema_vmsample_file = open("simulator/schema_vmsample.json")
@@ -223,6 +226,21 @@ def main(argv=None, save_main_session=True):
 
 
 if __name__ == "__main__":
-    PredictorFactory().RegisterPredictor("avg_predictor", lambda config: AvgPredictor(config))  
+    PredictorFactory().RegisterPredictor(
+        "per_vm_percentile_predictor", lambda config: PerVMPercentilePredictor(config)
+    )
+    PredictorFactory().RegisterPredictor(
+        "per_machine_percentile_predictor",
+        lambda config: PerMachinePercentilePredictor(config),
+    )
+    PredictorFactory().RegisterPredictor(
+        "n_sigma_predictor", lambda config: NSigmaPredictor(config)
+    )
+    PredictorFactory().RegisterPredictor(
+        "max_predictor", lambda config: MaxPredictor(config)
+    )
+    PredictorFactory().RegisterPredictor(
+        "limit_predictor", lambda config: LimitPredictor(config)
+    )
     logging.getLogger().setLevel(logging.INFO)
     main()
